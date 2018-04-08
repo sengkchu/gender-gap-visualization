@@ -20,8 +20,8 @@ MarkupSafe==1.0
 nbformat==4.4.0
 numpy==1.14.2
 pandas==0.22.0
-plotly>=2.5.1
-python-dateutil==1.5
+plotly==2.5.1
+python-dateutil==2.7.2
 pytz==2018.3
 requests==2.18.4
 six==1.11.0
