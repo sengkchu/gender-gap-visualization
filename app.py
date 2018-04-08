@@ -8,17 +8,12 @@ import numpy as np
 import os
 
 
-#Load in data:
-data_sf = pd.read_csv('cleaned_sf.csv')
-data_nb = pd.read_csv('cleaned_nb.csv')
-job_categories = data_sf['Job_Group'].value_counts().index
+
 
 #Application object
 server = flask.Flask(__name__)
 server.secret_key = os.environ.get('secret_key', str(randint(0, 1000000)))
 app = dash.Dash(__name__, server=server)
-
-
 app.title ='Gender Gap Visualization Tool'
 
 
@@ -32,6 +27,12 @@ external_js = ['https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min
 for js in external_js:
     app.scripts.append_script({'external_url': js})
     
+#Load in data:
+data_sf = pd.read_csv('cleaned_sf.csv')
+data_nb = pd.read_csv('cleaned_nb.csv')
+job_categories = data_sf['Job_Group'].value_counts().index
+
+
     
 #App Layouts
 app.layout = html.Div(
@@ -357,4 +358,4 @@ def update_nb_3(input_value1, input_value2, input_value3):
         }  
         
 if __name__ == '__main__':
-    app.run_server()
+	app.server.run(debug=True, threaded=True)
