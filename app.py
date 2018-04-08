@@ -49,7 +49,7 @@ app.layout = html.Div(
                      html.Div(dcc.Markdown('### Gender Gap Visualization Tool')),                     
                      html.Div(dcc.Markdown('''---''')),
                      html.Div(dcc.Markdown('''Based on the dataset on found [here](https://transparentcalifornia.com/).''')),
-                     html.Div(dcc.Markdown('''For a full analysis of this dataset click [here](https://codingdisciple.com/sf-gender-gap.html).''')),
+                     html.Div(dcc.Markdown('''For the full step by step analysis and preprocessing of this dataset click [here](https://codingdisciple.com/sf-gender-gap.html).''')),
                      html.Div(dcc.Markdown('''---''')),                    
                      html.Div(className='',
                               children=[html.B('Select Job Category:'),
@@ -95,8 +95,9 @@ app.layout = html.Div(
                              )]
                      ),
                      
-                     html.Div(dcc.Markdown('''---''')),                     
-#                     html.Div(dcc.Markdown('''© 2018 Seng Chu · Powered by [Dash, Plotly](https://github.com/plotly/dash), [Bootstrap](https://getbootstrap.com/)''')),                    
+                     html.Div(dcc.Markdown('''---''')),
+                     html.Div(dcc.Markdown('''Note: Use the cursor to interact with the plot. Double-click on the plot to zoom back out.''')),                      
+#                     html.Div(dcc.Markdown('''© 2018 Seng Chu · Charts created using [Dash, Plotly](https://github.com/plotly/dash), CSS from [Bootstrap](https://getbootstrap.com/)''')),                    
                      
             ]),
     
@@ -141,8 +142,8 @@ def update_sf_1(input_value1, input_value2, input_value3):
     male_group = filter_pay[filter_pay['Gender'] == 'male']
     female_group = filter_pay[filter_pay['Gender'] == 'female']
     
-    trace1 = go.Histogram(name = 'Male', x=male_group['temp_total'], opacity=0.7, histnorm='probability', marker={'color':'#9999ff'}, hoverinfo="x+y+name", hoverlabel={'bgcolor':'#000000'})
-    trace2 = go.Histogram(name = 'Female', x=female_group['temp_total'],opacity=0.7, histnorm='probability', marker={'color':'#ff9999'}, hoverinfo="x+y+name", hoverlabel={'bgcolor':'#000000'})
+    trace1 = go.Histogram(name = 'Male', x=male_group['temp_total'], opacity=0.7, histnorm='probability', marker={'color':'#9999ff'}, hoverinfo="x+y+name", hoverlabel={'bgcolor':'#4d4d4d'})
+    trace2 = go.Histogram(name = 'Female', x=female_group['temp_total'],opacity=0.7, histnorm='probability', marker={'color':'#ff9999'}, hoverinfo="x+y+name", hoverlabel={'bgcolor':'#4d4d4d'})
     return {
             'data':[trace1, trace2],
             'layout': {
@@ -184,7 +185,7 @@ def update_sf_2(input_value1, input_value2, input_value3):
             ),
             marker={'color':['#9999ff']}, 
             hoverinfo="y+name",
-            hoverlabel={'bgcolor':'#000000'}
+            hoverlabel={'bgcolor':'#4d4d4d'}
     )                         
     trace2 = go.Bar(
             name = 'Female',
@@ -197,7 +198,7 @@ def update_sf_2(input_value1, input_value2, input_value3):
             ),
             marker={'color':['#ff9999']}, 
             hoverinfo="y+name",
-            hoverlabel={'bgcolor':'#000000'}
+            hoverlabel={'bgcolor':'#4d4d4d'}
     )
                 
     return {
@@ -232,7 +233,7 @@ def update_sf_3(input_value1, input_value2, input_value3):
             marker={'colors':['#9999ff', '#ff9999']},
             textfont=dict(size=20),                 
             hoverinfo="label+value",
-            hoverlabel={'bgcolor':'#000000'}
+            hoverlabel={'bgcolor':'#4d4d4d'}
             )
     return {
             'data':[plot],
@@ -257,9 +258,15 @@ def update_nb_1(input_value1, input_value2, input_value3):
     
     male_group = filter_pay[filter_pay['Gender'] == 'male']
     female_group = filter_pay[filter_pay['Gender'] == 'female']
-    
-    trace1 = go.Histogram(name = 'Male', x=male_group['temp_total'], opacity=0.7, histnorm='probability', marker={'color':'#9999ff'}, hoverinfo="x+y+name", hoverlabel={'bgcolor':'#000000'})
-    trace2 = go.Histogram(name = 'Female', x=female_group['temp_total'],opacity=0.7, histnorm='probability', marker={'color':'#ff9999'}, hoverinfo="x+y+name", hoverlabel={'bgcolor':'#000000'})
+    if male_group.shape[0] == 0 or female_group.shape[0] == 0:
+        return {
+            'data':[],
+            'layout': {
+                'title': 'Newport Beach Data Not Available'
+            }
+        }    
+    trace1 = go.Histogram(name = 'Male', x=male_group['temp_total'], opacity=0.7, histnorm='probability', marker={'color':'#9999ff'}, hoverinfo="x+y+name", hoverlabel={'bgcolor':'#4d4d4d'})
+    trace2 = go.Histogram(name = 'Female', x=female_group['temp_total'],opacity=0.7, histnorm='probability', marker={'color':'#ff9999'}, hoverinfo="x+y+name", hoverlabel={'bgcolor':'#4d4d4d'})
     return {
             'data':[trace1, trace2],
             'layout': {
@@ -289,7 +296,13 @@ def update_nb_2(input_value1, input_value2, input_value3):
     
     male_error = 1.96*male_group['temp_total'].std()/np.sqrt(male_group['temp_total'].shape[0])    
     female_error = 1.96*female_group['temp_total'].std()/np.sqrt(female_group['temp_total'].shape[0])
-        
+    if male_group.shape[0] == 0 or female_group.shape[0] == 0:
+        return {
+            'data':[],
+            'layout': {
+                'title': 'Newport Beach Data Not Available'
+            }
+        }    
     trace1 = go.Bar(
             name = 'Male',
             x=[' '], 
@@ -301,7 +314,7 @@ def update_nb_2(input_value1, input_value2, input_value3):
             ),
             marker={'color':['#9999ff']}, 
             hoverinfo="y+name",
-            hoverlabel={'bgcolor':'#000000'}
+            hoverlabel={'bgcolor':'#4d4d4d'}
     )                         
     trace2 = go.Bar(
             name = 'Female',
@@ -314,7 +327,7 @@ def update_nb_2(input_value1, input_value2, input_value3):
             ),
             marker={'color':['#ff9999']}, 
             hoverinfo="y+name",
-            hoverlabel={'bgcolor':'#000000'}
+            hoverlabel={'bgcolor':'#4d4d4d'}
     )
                 
     return {
@@ -342,21 +355,27 @@ def update_nb_3(input_value1, input_value2, input_value3):
     
     male_group = filter_pay[filter_pay['Gender'] == 'male']
     female_group = filter_pay[filter_pay['Gender'] == 'female']
-    
+    if male_group.shape[0] == 0 or female_group.shape[0] == 0:
+        return {
+            'data':[],
+            'layout': {
+                'title': 'Newport Beach Data Not Available'
+            }
+        }  
     plot = go.Pie(
             labels = ['Male', 'Female'],
             values = [male_group.shape[0], female_group.shape[0]],
             marker={'colors':['#9999ff', '#ff9999']},
             textfont=dict(size=20),                  
             hoverinfo="label+value",
-            hoverlabel={'bgcolor':'#000000'}
+            hoverlabel={'bgcolor':'#4d4d4d'}
             )
     return {
-            'data':[plot],
-            'layout': {
-                'title': 'Newport Beach Gender Representation'
-            }
-        }  
+        'data':[plot],
+        'layout': {
+            'title': 'Newport Beach Gender Representation'
+        }
+    }  
         
 if __name__ == '__main__':
 	app.server.run(debug=True, threaded=True)
