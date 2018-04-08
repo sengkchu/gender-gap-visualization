@@ -8,7 +8,7 @@ import numpy as np
 
 
 
-#Load in data
+#Load in data:
 data_sf = pd.read_csv('cleaned_sf.csv')
 data_nb = pd.read_csv('cleaned_nb.csv')
 job_categories = data_sf['Job_Group'].value_counts().index
