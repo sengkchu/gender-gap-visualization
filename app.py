@@ -14,9 +14,9 @@ data_nb = pd.read_csv('cleaned_nb.csv')
 job_categories = data_sf['Job_Group'].value_counts().index
 
 #Application object
-app = dash.Dash()
+app = dash.Dash(__name__)
 app.title ='Gender Gap Visualization Tool'
-
+server = app.server
 
 #CSS and Javascript
 external_css = ["https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"]
