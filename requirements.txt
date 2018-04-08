@@ -9,6 +9,7 @@ decorator==4.2.1
 Flask==0.12.2
 Flask-Compress==1.4.0
 gunicorn==19.7.1
+heroku==0.1.4
 idna==2.6
 ipython-genutils==0.2.0
 itsdangerous==0.24
@@ -17,7 +18,10 @@ jsonschema==2.6.0
 jupyter-core==4.4.0
 MarkupSafe==1.0
 nbformat==4.4.0
+numpy==1.14.2
+pandas==0.22.0
 plotly==2.5.1
+python-dateutil==1.5
 pytz==2018.3
 requests==2.18.4
 six==1.11.0
