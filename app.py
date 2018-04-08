@@ -14,10 +14,11 @@ data_nb = pd.read_csv('cleaned_nb.csv')
 job_categories = data_sf['Job_Group'].value_counts().index
 
 #Application object
-
 server = flask.Flask(__name__)
 server.secret_key = os.environ.get('secret_key', str(randint(0, 1000000)))
 app = dash.Dash(__name__, server=server)
+
+
 app.title ='Gender Gap Visualization Tool'
 
 
