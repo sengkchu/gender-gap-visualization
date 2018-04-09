@@ -1,10 +1,10 @@
 # Gender Gap Visualization Tool
 
-Data exploration and analysis application created with Python and Dash, hosted at [heroku.com](https://gendergapvisualization.herokuapp.com).
+Data exploration and analysis application for San Francisco and Newport Beach public jobs. This app was created with Python and Dash, hosted at [heroku.com](https://gendergapvisualization.herokuapp.com).
 
 ![application](https://raw.githubusercontent.com/sengkchu/gendergapvisualization/master/app_preview.png)
 
-Based on San Francisco and Newport Beach dataset found at [Transparent California](https://transparentcalifornia.com/) for analysis of the public jobs in California. 
+Based on San Francisco and Newport Beach dataset found at [Transparent California](https://transparentcalifornia.com/).
 
 ### Repo Contents:
 
