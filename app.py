@@ -83,7 +83,7 @@ app.layout = html.Div(
                               children=[html.B('Select Pay:'), 
                      dcc.Checklist(
                              inputStyle={'display':'inline-block', 'margin-right':'5px'},
-                             labelStyle={'display':'inline-block', 'margin-right':'100px'},                             
+                             labelStyle={'display':'block', 'margin-right':'5px'},                             
                              id='input3',
                              options=[
                                      {'label': 'Base Pay', 'value': 'BasePay'},
@@ -92,7 +92,7 @@ app.layout = html.Div(
                                      {'label': 'Other Pay', 'value': 'OtherPay'}                                    
                                      ],
                              values=['BasePay', 'OvertimePay', 'Benefits', 'OtherPay']
-                             )]
+                             )]	
                      ),
                      
                      html.Div(dcc.Markdown('''---''')),
@@ -115,11 +115,13 @@ app.layout = html.Div(
                              children=[html.Div(dcc.Graph(id='output_sf_2'), className='col-lg-3'),
                                        html.Div(dcc.Graph(id='output_sf_3'), className='col-lg-3'),
                                        html.Div(dcc.Graph(id='output_nb_2'), className='col-lg-3'),
-                                       html.Div(dcc.Graph(id='output_nb_3'), className='col-lg-3')]
-                             ),                        
-
-             ]),
+                                       html.Div(dcc.Graph(id='output_nb_3'), className='col-lg-3')
+									   
+							]
+					),
                    
+			]
+	)
 ])])    
     
     
@@ -149,7 +151,7 @@ def update_sf_1(input_value1, input_value2, input_value3):
             'layout': {
                 'xaxis': {'title':'Yearly Income'},
                 'yaxis': {'title':'Normalized Frequency'},
-                'title': 'San Francisco Pay Distribution'
+                'title': '<br>San Francisco<br>Pay Distribution'
             }
         } 
             
@@ -205,7 +207,7 @@ def update_sf_2(input_value1, input_value2, input_value3):
             'data':[trace1, trace2],
             'layout': {
                 'showlegend':False,
-                'title': 'San Francisco Average Yearly Pay'
+                'title': '<br>San Francisco<br>Average Yearly Pay'
             }
         }
             
@@ -230,15 +232,15 @@ def update_sf_3(input_value1, input_value2, input_value3):
     plot = go.Pie(
             labels = ['Male', 'Female'],
             values = [male_group.shape[0], female_group.shape[0]],
-            marker={'colors':['#9999ff', '#ff9999']},
-            textfont=dict(size=20),                 
+            marker={'colors':['#9999ff', '#ff9999']},                
             hoverinfo="label+value",
             hoverlabel={'bgcolor':'#4d4d4d'}
             )
     return {
             'data':[plot],
             'layout': {
-                'title': 'San Francisco Gender Representation'
+                'showlegend':False,			
+                'title': '<br>San Francisco<br>Gender Representation'
             }
         }  
 @app.callback(
@@ -262,7 +264,7 @@ def update_nb_1(input_value1, input_value2, input_value3):
         return {
             'data':[],
             'layout': {
-                'title': 'Newport Beach Data Not Available'
+                'title': '<br>Newport Beach<br>Data Not Available'
             }
         }    
     trace1 = go.Histogram(name = 'Male', x=male_group['temp_total'], opacity=0.7, histnorm='probability', marker={'color':'#9999ff'}, hoverinfo="x+y+name", hoverlabel={'bgcolor':'#4d4d4d'})
@@ -272,7 +274,7 @@ def update_nb_1(input_value1, input_value2, input_value3):
             'layout': {
                 'xaxis': {'title':'Yearly Income'},
                 'yaxis': {'title':'Normalized Frequency'},
-                'title': 'Newport Beach Pay Distribution'
+                'title': '<br>Newport Beach<br>Pay Distribution'
             }
         } 
             
@@ -300,7 +302,7 @@ def update_nb_2(input_value1, input_value2, input_value3):
         return {
             'data':[],
             'layout': {
-                'title': 'Newport Beach Data Not Available'
+                'title': '<br>Newport Beach<br>Data Not Available'
             }
         }    
     trace1 = go.Bar(
@@ -334,7 +336,7 @@ def update_nb_2(input_value1, input_value2, input_value3):
             'data':[trace1, trace2],
             'layout': {
                 'showlegend':False,
-                'title': 'Newport Beach Average Yearly Pay'
+                'title': '<br>Newport Beach<br>Average Yearly Pay'
             }
         }
             
@@ -359,21 +361,21 @@ def update_nb_3(input_value1, input_value2, input_value3):
         return {
             'data':[],
             'layout': {
-                'title': 'Newport Beach Data Not Available'
+                'title': "<br>Newport Beach<br>Data Not Available"
             }
         }  
     plot = go.Pie(
             labels = ['Male', 'Female'],
             values = [male_group.shape[0], female_group.shape[0]],
-            marker={'colors':['#9999ff', '#ff9999']},
-            textfont=dict(size=20),                  
+            marker={'colors':['#9999ff', '#ff9999']},                  
             hoverinfo="label+value",
             hoverlabel={'bgcolor':'#4d4d4d'}
             )
     return {
         'data':[plot],
         'layout': {
-            'title': 'Newport Beach Gender Representation'
+            'showlegend':False,		
+            'title': '<br>Newport Beach<br>Gender Representation'
         }
     }  
         
