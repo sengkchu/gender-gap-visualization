@@ -22,13 +22,21 @@ For the data preprocessing and analysis of this dataset, click [here](https://co
 + `Procfile` for hosting on heroku only.
 + `requirements.txt` requirements for this application.
 
-### Running the App Locally:
-
+### Running the App Locally (Windows):
 
 + Clone this repository.
-+ Create virtual environment `python -m virtualenv venv` (Optional).
-+ Start virtual environment `source venv/Scripts/activate` (Optional). 
++ Create virtual environment `python -m virtualenv venv`.
++ Start virtual environment `.venv/Scripts/activate`. 
 + Install packages `pip install -r requirements.txt`.
 + Start the application `python app.py`.
++ Enter http://localhost:5000/ in your web browser to use the application locally.
+
+### Running the App Locally (macOS and Linux):
+
++ Clone this repository.
++ Create virtual environment `python3 -m virtualenv venv`.
++ Start virtual environment `source  venv/bin/activate`. 
++ Install packages `pip install -r requirements.txt`.
++ Start the application `python3 app.py`.
 + Enter http://localhost:5000/ in your web browser to use the application locally.
 
