@@ -11,7 +11,7 @@ jedi==0.11.1
 jupyter-client==5.2.1
 jupyter-core==4.4.0
 matplotlib==2.1.1
-numpy==1.14.0
+numpy==1.22.0
 pandas==0.22.0
 parso==0.1.1
 pickleshare==0.7.4
